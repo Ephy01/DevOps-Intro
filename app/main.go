@@ -1,5 +1,4 @@
 package main
-
 import (
 	"context"
 	"errors"
@@ -28,7 +27,7 @@ func main() {
 	server := NewServer(store)
 	srv := &http.Server{
 		Addr:              addr,
-		Handler:           server.Routes(),
+		Handler:           securityHeaders(server.Routes()),
 		ReadHeaderTimeout: 5 * time.Second,
 	}
 
@@ -83,3 +82,5 @@ func dirname(p string) string {
 	}
 	return "."
 }
+
+
